@@ -49,9 +49,9 @@ def get_vacancies_from_hh(language):
         page += 1
         with suppress(requests.exceptions.HTTPError):
             response.raise_for_status()
-        response_data = response.json()
-        vacancies.extend(response_data['items'])
-        number_of_pages = response_data['pages'] - 1
+        developers_of_lang_data = response.json()
+        vacancies.extend(developers_of_lang_data['items'])
+        number_of_pages = developers_of_lang_data['pages'] - 1
     return vacancies
 
 
@@ -100,9 +100,9 @@ def get_vacancies_from_sj(language):
         except requests.exceptions.HTTPError:
             next_page = False
             continue
-        response_data = response.json()
-        vacancies.extend(response_data['objects'])
-        next_page = response_data['more']
+        developers_of_lang_data_sj = response.json()
+        vacancies.extend(developers_of_lang_data_sj['objects'])
+        next_page = developers_of_lang_data_sj['more']
     return vacancies
 
 
@@ -130,7 +130,7 @@ def make_all_language_stat_from_sj(languages):
 def make_table(site_name, statistic):
     title = '-----------------{} statistics'.format(site_name)
     if statistic:
-        table_data = [[
+        table_in_terminal = [[
             'lang', 'vacancies_found', 'vacancies_processed', 'average_salary'
         ]]
         for language, language_stat in statistic.items():
@@ -139,8 +139,8 @@ def make_table(site_name, statistic):
             row = [language]
             for key, value in language_stat.items():
                 row.append(value)
-            table_data.append(row)
-        return AsciiTable(table_data, title).table
+            table_in_terminal.append(row)
+        return AsciiTable(table_in_terminal, title).table
 
 
 if __name__ == '__main__':
