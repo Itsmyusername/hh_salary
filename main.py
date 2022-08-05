@@ -41,7 +41,7 @@ def get_vacancies_from_hh(language):
         headers = {'User-Agent': 'HH-User-Agent'}
         params = {
             'area': 1,  # Код города, 1 - Москва
-            'text': 'программист ' + language,
+            'text': f'программист {language}',
             'page': page  # Текущая страница поиска
         }
         response = requests.get(hh_url, headers=headers, params=params)
