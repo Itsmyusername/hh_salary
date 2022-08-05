@@ -77,8 +77,7 @@ def make_all_language_stat_from_hh(languages):
     return stat
 
 
-def get_vacancies_from_sj(language):
-    secret_key = os.getenv('SJ_KEY')
+def get_vacancies_from_sj(language, secret_key):
     sj_url = 'https://api.superjob.ru/2.0/vacancies'
     page = 0
     next_page = True
@@ -122,7 +121,7 @@ def get_sj_statistic(vacancies):
 def make_all_language_stat_from_sj(languages):
     stat = {}
     for language in languages:
-        vacancies = get_vacancies_from_sj(language)
+        vacancies = get_vacancies_from_sj(language, secret_key)
         stat[language] = get_sj_statistic(vacancies)
     return stat
 
@@ -151,4 +150,5 @@ if __name__ == '__main__':
     print(make_table(site_name, make_all_language_stat_from_hh(languages)))
 
     site_name = 'SJ'
+    secret_key = os.getenv('SJ_KEY')
     print(make_table(site_name, make_all_language_stat_from_sj(languages)))
