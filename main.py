@@ -2,6 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from terminaltables import AsciiTable
+from contextlib import suppress
 
 
 def predict_salary(salary_from, salary_to):
@@ -46,10 +47,8 @@ def get_vacancies_from_hh(language):
         }
         response = requests.get(hh_url, headers=headers, params=params)
         page += 1
-        try:
+        with suppress(requests.exceptions.HTTPError):
             response.raise_for_status()
-        except requests.exceptions.HTTPError:
-            continue
         response_data = response.json()
         vacancies.extend(response_data['items'])
         number_of_pages = response_data['pages'] - 1
