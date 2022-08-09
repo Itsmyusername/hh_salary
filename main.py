@@ -57,13 +57,13 @@ def get_vacancies_from_hh(language):
 
 def get_hh_statistic(vacancies):
     if vacancies:
-        number_of_vacancies = len(vacancies)
+        vacancies_numbers = len(vacancies)
         salaries = [predict_rub_salary_hh(vacancy) for vacancy in vacancies if predict_rub_salary_hh(vacancy) != 0]
         vacancies_processed = len(salaries)
         if vacancies_processed != 0:
             average_salary = int(sum(salaries)/vacancies_processed)
         hh_statistics = {
-            'vacancies_found': number_of_vacancies,
+            'vacancies_found': vacancies_numbers,
             'vacancies_processed': vacancies_processed,
             'average_salary': average_salary
         }
@@ -107,13 +107,13 @@ def get_vacancies_from_sj(language, secret_key):
 
 
 def get_sj_statistic(vacancies):
-    number_of_vacancies = len(vacancies)
-    if number_of_vacancies:
+    vacancies_numbers = len(vacancies)
+    if vacancies_numbers:
         salaries = [predict_rub_salary_sj(vacancy) for vacancy in vacancies]
-        average_salary = int(sum(salaries)/number_of_vacancies)
+        average_salary = int(sum(salaries)/vacancies_numbers)
         sj_statistics = {
-            'vacancies_found': number_of_vacancies,
-            'vacancies_processed': number_of_vacancies,
+            'vacancies_found': vacancies_numbers,
+            'vacancies_processed': vacancies_numbers,
             'average_salary': average_salary
         }
         return sj_statistics
