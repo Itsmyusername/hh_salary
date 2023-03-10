@@ -49,9 +49,9 @@ def get_vacancies_from_hh(language):
         page += 1
         with suppress(requests.exceptions.HTTPError):
             response.raise_for_status()
-        developers_of_lang_data = response.json()
-        vacancies.extend(developers_of_lang_data['items'])
-        number_of_pages = developers_of_lang_data['pages'] - 1
+        developers = response.json()
+        vacancies.extend(developers['items'])
+        number_of_pages = developers['pages'] - 1
     return vacancies
 
 
@@ -100,9 +100,9 @@ def get_vacancies_from_sj(language, secret_key):
         except requests.exceptions.HTTPError:
             next_page = False
             continue
-        developers_of_lang_data_sj = response.json()
-        vacancies.extend(developers_of_lang_data_sj['objects'])
-        next_page = developers_of_lang_data_sj['more']
+        developers_sj = response.json()
+        vacancies.extend(developers_sj['objects'])
+        next_page = developers_sj['more']
     return vacancies
 
 
