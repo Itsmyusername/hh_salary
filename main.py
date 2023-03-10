@@ -60,7 +60,7 @@ def get_hh_statistic(vacancies):
         vacancies_numbers = len(vacancies)
         salaries = [predict_rub_salary_hh(vacancy) for vacancy in vacancies if predict_rub_salary_hh(vacancy) != 0]
         vacancies_processed = len(salaries)
-        if vacancies_processed != 0:
+        if vacancies_processed:
             average_salary = int(sum(salaries)/vacancies_processed)
         hh_statistics = {
             'vacancies_found': vacancies_numbers,
