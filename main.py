@@ -72,7 +72,7 @@ def get_average_hh_statistics(programming_language, total_vacancies, total_found
 def get_average_sj_statistics(programming_language, total_vacancies, total_found):
     average_salary = []
     for vacancy in total_vacancies:
-        avg_salary = perdict_rub_salary_for_superjob(vacancy)
+        avg_salary = predict_rub_salary_for_superjob(vacancy)
         if vacancy['currency'] != 'rub' or not avg_salary:
             continue
         average_salary.append(avg_salary)
@@ -101,7 +101,7 @@ def predict_rub_salary_for_hh(vacancy):
     return predict_rub_salary(salary_from, salary_to)
 
 
-def perdict_rub_salary_for_superjob(vacancy):
+def predict_rub_salary_for_superjob(vacancy):
     salary_from = vacancy['payment_from']
     salary_to = vacancy['payment_to']
     return predict_rub_salary(salary_from, salary_to)
