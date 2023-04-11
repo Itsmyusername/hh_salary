@@ -114,8 +114,8 @@ def safe_division(x, y):
         return 0
 
 
-def format_table(data, title):
-    table_instance = SingleTable(data, title)
+def format_table(body, title):
+    table_instance = SingleTable(body, title)
     table_instance.justify_columns[4] = 'right'
     return table_instance.table
 
@@ -136,8 +136,8 @@ def get_sj_language_statistics(language, sj_api_key, page, min_vacancies):
         while page_numbers > page:
             page += 1
             total_sj_vacancies = get_superjob_api_response(language, sj_api_key, page)['objects']
-            average_info_sj = get_average_sj_statistics(language, total_sj_vacancies, total_sj_found)
-            language_sj_vacancy_statistics.append(average_info_sj)
+            average_sj = get_average_sj_statistics(language, total_sj_vacancies, total_sj_found)
+            language_sj_vacancy_statistics.append(average_sj)
     return language_sj_vacancy_statistics
 
 
