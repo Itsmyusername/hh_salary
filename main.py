@@ -133,9 +133,9 @@ def get_sj_language_statistics(language, sj_api_key, page, min_vacancies):
     language_sj_vacancy_statistics = get_average_sj_statistics(language, first_sj_page['objects'], total_sj_found)
     if total_sj_found > min_vacancies:
         page_numbers = (total_sj_found - 1) // min_vacancies
+        total_sj_vacancies = get_superjob_api_response(language, sj_api_key, page)['objects']
         while page_numbers > page:
             page += 1
-            total_sj_vacancies = get_superjob_api_response(language, sj_api_key, page)['objects']
             average_sj = get_average_sj_statistics(language, total_sj_vacancies, total_sj_found)
             language_sj_vacancy_statistics.append(average_sj)
     return language_sj_vacancy_statistics
