@@ -145,10 +145,6 @@ if __name__ == '__main__':
     start = datetime.now()
     logging.basicConfig(level=logging.INFO)
     load_dotenv()
-    parser = argparse.ArgumentParser(description='Программа собирает данные с сайтов HeadHunter и SuperJob '
-                                                 'по вакансиям программиста на различных языках.'
-                                                 'Скрипт не требует никаких дополнительных данных, '
-                                                 'как закончится обработка, на экран выведутся таблицы со статистикой.')
     sj_api_key = os.getenv('SJ_SECRET_KEY')
     min_vacancies = 100
     page = 0
